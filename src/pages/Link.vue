@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <a v-if="admin" id="admin" href="" />
+  <a v-show="admin" id="admin" href="" />
   <a id="profile" href="">profile</a>
 </template>
 

@@ -51,7 +51,7 @@ describe('OddEven', () => {
         }
       },
     })
-    expect(wrapper.find('#admin').exists()).toBe(true)
+    expect(wrapper.find('#admin').isVisible()).toBe(true)
   })
   it('renders a profile link', () => {
     const wrapper = mount(Link, {
@@ -62,6 +62,6 @@ describe('OddEven', () => {
         }
       },
     })
-    expect(wrapper.find('#admin').exists()).toBe(false)
+    expect(wrapper.find('#admin').isVisible()).toBe(false)
   })
 })
