@@ -21,22 +21,15 @@ function factory() {
   return mount(OddEven, {
     global: {
       plugins: [store],
-
+      stubs: {
+        Fetcher: true,
+      },
     },
 
   })
 }
 
-let mockGet = vi.fn()
-
-vi.mock('axios', () => ({
-  get: () => mockGet(),
-}))
-
 describe('OddEven', () => {
-  beforeEach(() => {
-    mockGet = vi.fn()
-  })
   it('render count when odd', async () => {
     const wrapper = factory()
     await wrapper.find('button').trigger('click')
@@ -46,10 +39,7 @@ describe('OddEven', () => {
     const wrapper = factory()
     await wrapper.find('button').trigger('click')
     await wrapper.find('button').trigger('click')
+    console.log(wrapper.html())
     expect(wrapper.html()).toContain('Count: 2. Count is even.')
-  })
-  it('make an api call', async () => {
-    const wrapper = factory()
-    expect(mockGet).toHaveBeenCalledOnce()
   })
 })
