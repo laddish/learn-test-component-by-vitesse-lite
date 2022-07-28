@@ -13,5 +13,5 @@ const router = createRouter({
   routes,
 })
 app.use(router)
-
+// app.provide('store', store)
 app.mount('#app')

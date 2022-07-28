@@ -19,14 +19,25 @@ const createVuexStore = () => createStore({
 // 工厂函数 创建同一个实例的 copy
 // 可以让代码更紧凑
 
+// stub
+// directives
+// mocks
+// provide
+
 function factory() {
-  const store = createVuexStore()
+  const state = reactive({ count: 0 })
   return mount(OddEven, {
     global: {
-      plugins: [store],
-      // provide: {
-      //   store,
-      // },
+      // plugins: [store],
+      // provide: {},
+      provide: {
+        store: {
+          state,
+          commit: () => {
+            state.count += 1
+          },
+        },
+      },
     },
   })
 }

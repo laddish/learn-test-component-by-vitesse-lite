@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { useStore } from 'vuex'
-const store = useStore()
+// import { useStore } from 'vuex'
+// const store = useStore()
+
+const store = inject('store')
 const count = computed(() => store.state.count)
 const increment = () => {
   store.commit('increment')
