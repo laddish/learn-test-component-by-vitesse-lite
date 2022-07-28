@@ -1,11 +1,23 @@
 <script setup lang="ts">
-// import { useStore } from 'vuex'
-// const store = useStore()
 
-const store = inject('store')
-const count = computed(() => store.state.count)
-const increment = () => {
-  store.commit('increment')
+</script>
+
+<script lang="ts">
+export default {
+  computed: {
+    postId() {
+      console.log(this.$route)
+      return this.$route.params.postId
+    },
+    count() {
+      return this.$store.state.count
+    },
+  },
+  methods: {
+    increment() {
+      this.$store.commit('increment')
+    },
+  },
 }
 </script>
 
@@ -21,6 +33,8 @@ const increment = () => {
     <div v-if="count % 2 !== 0">
       Count: {{ count }}. Count is odd.
     </div>
+
+    <div>PostID: {{ postId }}</div>
   </div>
 </template>
 

@@ -25,20 +25,22 @@ const createVuexStore = () => createStore({
 // provide
 
 function factory() {
-  const state = reactive({ count: 0 })
+  const store = createVuexStore()
   return mount(OddEven, {
     global: {
-      // plugins: [store],
-      // provide: {},
-      provide: {
-        store: {
-          state,
-          commit: () => {
-            state.count += 1
+      plugins: [store],
+      mocks: {
+        // $store
+        // $route
+        // $t i18l
+        $route: {
+          params: {
+            postId: 1,
           },
         },
       },
     },
+
   })
 }
 
@@ -53,6 +55,10 @@ describe('OddEven', () => {
     await wrapper.find('button').trigger('click')
     await wrapper.find('button').trigger('click')
     expect(wrapper.html()).toContain('Count: 2. Count is even.')
+  })
+  it('router', async () => {
+    const wrapper = factory()
+    expect(wrapper.html()).toContain('PostID: 1')
   })
   it.skip('trigger increment', async () => {
     const wrapper = factory()
