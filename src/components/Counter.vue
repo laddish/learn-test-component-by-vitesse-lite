@@ -1,9 +1,9 @@
 <script setup lang="ts">
-const props = defineProps<{
+const { initial = 10 } = defineProps<{
   initial: number
 }>()
 
-const { count, inc, dec } = useCounter(props.initial)
+const { count, inc, dec } = useCounter(initial)
 </script>
 
 <template>

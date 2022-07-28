@@ -1,3 +1,16 @@
 // Vitest Snapshot v1
 
 exports[`Counter.vue > should render 1`] = `"<div>10 <button class=\\"inc\\"> + </button><button class=\\"dec\\"> - </button></div>"`;
+
+exports[`List.vue > List component shallow 1`] = `
+"<div>
+  <ul>
+    <div>The Shawshank Redemption</div>
+    <div>The Godfather</div>
+    <div>The Godfather: Part II</div>
+    <div>The Dark Knight</div>
+    <div>12 Angry Monkeys</div>
+    <div>test</div>
+  </ul>
+</div>"
+`;

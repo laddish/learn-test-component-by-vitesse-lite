@@ -1,11 +1,13 @@
-import { mount } from '@vue/test-utils'
+import { mount, shallowMount } from '@vue/test-utils'
 import { describe, expect, it } from 'vitest'
-import Counter from '../src/components/Counter.vue'
+import Counter from '~/components/Counter.vue'
+import List from '~/pages/List.vue'
 
 describe('Counter.vue', () => {
   it('should render', () => {
-    const wrapper = mount(Counter, { props: { initial: 10 } })
+    const wrapper = mount(Counter, { propsData: { initial: 10 } })
     expect(wrapper.text()).toContain('10')
+    // 创建一个 snapshot 文件
     expect(wrapper.html()).toMatchSnapshot()
   })
 
@@ -18,5 +20,22 @@ describe('Counter.vue', () => {
     await wrapper.get('button').trigger('click')
 
     expect(wrapper.text()).toContain('1')
+  })
+})
+
+describe('List.vue', () => {
+  it('List component shallow', async () => {
+    // console.log(mount(List).html())
+    // console.log(shallowMount(List).html())
+    const wrapper = mount(List)
+    console.log(wrapper.vm.movies)
+    const movies = wrapper.vm.movies
+    await wrapper.setData({
+      movies: [...movies, {
+        title: 'test',
+        year: '2020',
+      }],
+    })
+    expect(wrapper.html()).toMatchSnapshot()
   })
 })
