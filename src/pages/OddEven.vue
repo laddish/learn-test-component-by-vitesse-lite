@@ -1,24 +1,16 @@
 <script setup lang="ts">
+const emit = defineEmits(['countAdd'])
 
+const count = ref(0)
+
+function handleClick() {
+  count.value += 1
+  emit('countAdd', count.value)
+}
 </script>
 
 <script lang="ts">
-export default {
-  data() {
-    return {
-      count: 0,
-    }
-  },
-  methods: {
-    increment() {
-      this.$store.commit('increment')
-    },
-    handleClick() {
-      this.count += 1
-      this.$emit('countAdd', this.count, 'hello')
-    },
-  },
-}
+
 </script>
 
 <template>
