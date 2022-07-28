@@ -4,14 +4,18 @@
 
 <script lang="ts">
 export default {
-  computed: {
-    count() {
-      return this.$store.state.count
-    },
+  data() {
+    return {
+      count: 0,
+    }
   },
   methods: {
     increment() {
       this.$store.commit('increment')
+    },
+    handleClick() {
+      this.count += 1
+      this.$emit('countAdd', this.count, 'hello')
     },
   },
 }
@@ -22,6 +26,9 @@ export default {
     <button @click="increment">
       +
     </button>
+    <button class="emitBtn" @click="handleClick">
+      +
+    </button>
 
     <div v-if="count % 2 === 0">
       Count: {{ count }}. Count is even.
@@ -29,7 +36,6 @@ export default {
     <div v-if="count % 2 !== 0">
       Count: {{ count }}. Count is odd.
     </div>
-    <Fetcher />
   </div>
 </template>
 

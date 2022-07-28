@@ -21,25 +21,19 @@ function factory() {
   return mount(OddEven, {
     global: {
       plugins: [store],
-      stubs: {
-        Fetcher: true,
-      },
+
     },
 
   })
 }
 
 describe('OddEven', () => {
-  it('render count when odd', async () => {
+  it('emit', async () => {
     const wrapper = factory()
-    await wrapper.find('button').trigger('click')
-    expect(wrapper.html()).toContain('Count: 1. Count is odd.')
-  })
-  it('render count when even', async () => {
-    const wrapper = factory()
-    await wrapper.find('button').trigger('click')
-    await wrapper.find('button').trigger('click')
-    console.log(wrapper.html())
-    expect(wrapper.html()).toContain('Count: 2. Count is even.')
+    await wrapper.find('.emitBtn').trigger('click')
+    expect(wrapper.emitted().countAdd[0][0]).toBe(1)
+    await wrapper.find('.emitBtn').trigger('click')
+    expect(wrapper.emitted().countAdd[1][0]).toBe(2)
+    console.log(wrapper.emitted())
   })
 })
