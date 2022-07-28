@@ -22,11 +22,13 @@ specifiers:
   vue: ^3.2.37
   vue-router: ^4.1.2
   vue-tsc: ^0.39.0
+  vuex: ^4.0.2
 
 dependencies:
   '@vueuse/core': 9.0.0_vue@3.2.37
   vue: 3.2.37
   vue-router: 4.1.2_vue@3.2.37
+  vuex: 4.0.2_vue@3.2.37
 
 devDependencies:
   '@antfu/eslint-config': 0.25.2_he2ccbldppg44uulnyq4rwocfa
@@ -4719,6 +4721,15 @@ packages:
       '@vue/runtime-dom': 3.2.37
       '@vue/server-renderer': 3.2.37_vue@3.2.37
       '@vue/shared': 3.2.37
+
+  /vuex/4.0.2_vue@3.2.37:
+    resolution: {integrity: sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==}
+    peerDependencies:
+      vue: ^3.0.2
+    dependencies:
+      '@vue/devtools-api': 6.2.1
+      vue: 3.2.37
+    dev: false
 
   /w3c-hr-time/1.0.2:
     resolution: {integrity: sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ==}
