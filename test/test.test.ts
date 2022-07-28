@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 
 const App = {
   props: {
-    count: {
+    count1: {
       type: Number,
     },
   },
@@ -12,7 +12,13 @@ const App = {
       msg: 'hello',
     }
   },
+  methods: {
+    increment() {
+      this.count += 1
+    },
+  },
   template: `
+    <button @click="increment" />
     <div>Hello</div>
     <div v-if="count % 2  === 0">
       Count: {{ count }}. Count is even.
@@ -24,24 +30,51 @@ const App = {
 }
 
 // 工厂函数 创建同一个实例的 copy
-function factory(props: any) {
+// 可以让代码更紧凑
+
+function factory({ data, props } = { data: {} }) {
   return mount(App, {
     props,
+    data() {
+      return data
+    },
   })
 }
 
 describe('App', () => {
   it('render count when odd', () => {
-    const wrapper = factory({ count: 1 })
+    const wrapper = factory({
+      data: {
+        count: 1,
+      },
+      props: { count1: 1 },
+    })
     console.log(wrapper.vm)
     // expect(wrapper.text()).toBe('Hello')
     // expect(wrapper.html()).toBe('<div>Hello</div>')
     expect(wrapper.html()).toContain('Count: 1. Count is odd.')
   })
-  it('render count when even', () => {
-    const wrapper = factory({ count: 2 })
+  it.skip('render count when even', () => {
+    const wrapper = factory({
+      data: {
+        count: 2,
+      },
+      props: { count1: 2 },
+    })
     // expect(wrapper.text()).toBe('Hello')
     // expect(wrapper.html()).toBe('<div>Hello</div>')
     expect(wrapper.html()).toContain('Count: 2. Count is even.')
+  })
+  it('trigger increment', async () => {
+    const wrapper = factory({
+      data: {
+        count: 0,
+      },
+      props: { count1: 2 },
+    })
+    // expect(wrapper.text()).toBe('Hello')
+    // expect(wrapper.html()).toBe('<div>Hello</div>')
+    await wrapper.find('button').trigger('click')
+    expect(wrapper.html()).toContain('Count: 1. Count is odd.')
   })
 })
