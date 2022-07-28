@@ -2,6 +2,7 @@ import { mount } from '@vue/test-utils'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createStore } from 'vuex'
 import OddEven from '~/pages/OddEven.vue'
+import Link from '~/pages/Link.vue'
 
 const createVuexStore = () => createStore({
   state() {
@@ -35,5 +36,32 @@ describe('OddEven', () => {
     await wrapper.find('.emitBtn').trigger('click')
     expect(wrapper.emitted().countAdd[1][0]).toBe(2)
     console.log(wrapper.emitted())
+  })
+
+  it('renders a profile link', () => {
+    const wrapper = mount(Link)
+    expect(wrapper.find('#profile').text()).toBe('profile')
+  })
+  it('renders a profile link', () => {
+    const wrapper = mount(Link, {
+      data() {
+        return {
+
+          admin: true,
+        }
+      },
+    })
+    expect(wrapper.find('#admin').exists()).toBe(true)
+  })
+  it('renders a profile link', () => {
+    const wrapper = mount(Link, {
+      data() {
+        return {
+
+          admin: false,
+        }
+      },
+    })
+    expect(wrapper.find('#admin').exists()).toBe(false)
   })
 })

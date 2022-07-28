@@ -15,7 +15,7 @@ function handleClick() {
 
 <template>
   <div>
-    <button @click="increment">
+    <button @click="handleClick">
       +
     </button>
     <button class="emitBtn" @click="handleClick">
